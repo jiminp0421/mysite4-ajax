@@ -42,5 +42,21 @@ public class BookService {
 		
 		return count;
 	}
+	
+	//방명록 글 저장(ajax)
+	public GuestVo addGuest(GuestVo guestVo) {
+		//wjwkd
+		bookDao.insert(guestVo);
+		int no = guestVo.getNo(); //연구해볼것
+		System.out.println("no값" +no);
+		
+		System.out.println(no);
+		
+		//저장된 데이터 가져오기
+		return bookDao.selectByNo(no);		
+	}
+	
+	
+	
 
 }

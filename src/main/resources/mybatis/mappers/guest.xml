@@ -33,9 +33,31 @@
 		<![CDATA[
 			delete from guestbook
 			where no = #{no}
+			and password = #{pw}
 		]]>
 	</delete>
 	
+	
+	<!-- 방명록 글저장 ajax -->
+	<insert id="insertSelectKey" parameterType="com.javaex.vo.GuestVo">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+		 select seq_no.nextval from dual
+		</selectKey>
+		<![CDATA[
+		INSERT INTO guestbook
+		VALUES (#{no},#{name},#{pw},#{content},SYSDATE)
+		]]>
+	</insert>
+	
+	<!-- 자신이 등록한 글 가져오기  ajax-->
+	
+	<select id="selectByNo" parameterType="int" resultType="com.javaex.vo.GuestVo">
+		<![CDATA[
+			select no, name, password pw, content, reg_date regdate
+			from guestbook
+			where no = #{no}
+		]]>
+	</select>
 	
 	
 	

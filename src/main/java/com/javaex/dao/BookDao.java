@@ -40,5 +40,18 @@ public class BookDao {
 		int count = sqlSession.delete("guest.delete", guestVo);
 		return count;
 	}
+	
+	//방명록 글 저장(ajax)
+	public void insert(GuestVo guestVo) {
+		System.out.println(guestVo.toString()); //no값 없음
+		sqlSession.insert("guest.insertSelectKey",guestVo);
+		System.out.println(guestVo.toString()); //no값 있음;
+	}
 
+	//글가져오기(ajax)
+	public GuestVo selectByNo(int no) {
+		return sqlSession.selectOne("guest.selectByNo", no);
+		
+	}
+	
 }
